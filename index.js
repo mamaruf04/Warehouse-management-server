@@ -91,6 +91,27 @@ async function run() {
   });
 
 
+  // update single property of book price
+  app.put("/bookprice/:id", async (req, res) => {
+    const id = req.params.id;
+    const updatedBook = req.body;
+    const filter = { _id: ObjectId(id) };
+    const options = { upsert: true };
+    const updatedDoc = {
+      $set: {
+        price: updatedBook.price,
+      },
+    };
+    const result = await booksCollection.updateOne(
+      filter,
+      updatedDoc,
+      options
+    );
+    res.send(result);
+  });
+
+
+
   } finally {
     // await client.close();
   }
