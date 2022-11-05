@@ -147,6 +147,11 @@ async function run() {
     res.send(result);
   });
 
+   // Count Reviews
+   app.get("/reviewCount", async (req, res) => {
+    const count = await reviewCollection.estimatedDocumentCount();
+    res.send({ count });
+  });
 
   } finally {
     // await client.close();
