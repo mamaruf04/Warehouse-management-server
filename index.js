@@ -153,6 +153,23 @@ async function run() {
     res.send({ count });
   });
 
+
+  // Load History API
+  app.get("/histories", async (req, res) => {
+    const query = {};
+    const cursor = historyCollection.find(query);
+    const result = await cursor.toArray();
+    res.send(result);
+  });
+
+  // POST History API
+  app.post("/histories", async (req, res) => {
+    const newHistory = req.body;
+    const result = await historyCollection.insertOne(newHistory);
+    res.send(result);
+  });
+
+
   } finally {
     // await client.close();
   }
