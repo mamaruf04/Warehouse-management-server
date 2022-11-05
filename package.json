@@ -1,0 +1,30 @@
+{
+  "name": "books-store-server",
+  "version": "1.0.0",
+  "description": "[Live website](https://book-warehouse-bfb94.web.app/)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "start-dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.0",
+    "mongodb": "^4.5.0",
+    "nodemon": "^2.0.16"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mamaruf04/Warehouse-management-server"
+  },
+  "bugs": {
+    "url": "https://github.com/ProgrammingHeroWC4/warehouse-management-server-side-mamaruf04/issues"
+  },
+  "homepage": "https://github.com/mamaruf04/Warehouse-management-server#readme"
+}
