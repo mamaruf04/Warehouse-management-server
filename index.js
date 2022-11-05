@@ -128,6 +128,26 @@ async function run() {
     res.send(result);
   });
 
+
+  // Load reviews data api
+  app.get("/reviews", async (req, res) => {
+    const query = {};
+    const page = parseInt(req.query.page);
+    const cursor = reviewCollection.find(query);
+    const reviews = await cursor
+      .skip(page * 3)
+      .limit(3)
+      .toArray();
+    res.send(reviews);
+  });
+  // Post review api
+  app.post("/review", async (req, res) => {
+    const newReview = req.body;
+    const result = await reviewCollection.insertOne(newReview);
+    res.send(result);
+  });
+
+
   } finally {
     // await client.close();
   }
