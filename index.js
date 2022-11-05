@@ -111,6 +111,22 @@ async function run() {
   });
 
 
+  // update Multiple property of book
+  app.put("/bookupdate/:id", async (req, res) => {
+    const id = req.params.id;
+    const updatedBook = req.body;
+    const filter = { _id: ObjectId(id) };
+    const options = { upsert: true };
+    const updatedDoc = {
+      $set: updatedBook,
+    };
+    const result = await booksCollection.updateOne(
+      filter,
+      updatedDoc,
+      options
+    );
+    res.send(result);
+  });
 
   } finally {
     // await client.close();
