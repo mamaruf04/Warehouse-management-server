@@ -38,7 +38,23 @@ async function run() {
       res.send(result);
     });
 
-    
+    // Load user email specific data
+  app.get("/book", async (req, res) => {
+    const email = req.query.email;
+    const query = { email: email };
+    const cursor = booksCollection.find(query);
+    const result = await cursor.toArray();
+    res.send(result);
+  });
+  // Load book by text
+  app.get("/bookbytext", async (req, res) => {
+    const text = req.query.search;
+    const query = {};
+    const cursor = booksCollection.find();
+    const books = await cursor.toArray();
+    res.send(books);
+  });
+
   } finally {
     // await client.close();
   }
