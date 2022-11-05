@@ -21,6 +21,24 @@ async function run() {
     const booksCollection = client.db("storeBooks").collection("books");
     const reviewCollection = client.db("reviews").collection("review");
     const historyCollection = client.db("histories").collection("history");
+
+    // Load all book api
+    app.get("/books", async (req, res) => {
+      const query = {};
+      const cursor = booksCollection.find(query);
+      const result = await cursor.toArray();
+      res.send(result);
+    });
+
+    // load single book api
+    app.get("/book/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const result = await booksCollection.findOne(query);
+      res.send(result);
+    });
+
+    
   } finally {
     // await client.close();
   }
